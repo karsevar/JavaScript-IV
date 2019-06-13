@@ -37,6 +37,18 @@ GameObject.prototype.destroy = function() {
 
 // === CharacterStats === 
 
+class CharacterStats extends GameObject {
+	constructor(charAttrs) {
+		super(charAttrs);
+		this.healthPoints = charAttrs.healthPoints;
+	}
+
+	takeDamage() {
+		return `${this.name} took damage!`;
+	}
+}
+
+/*
 function CharacterStats(charAttrs) {
 	GameObject.call(this, charAttrs);
 	this.healthPoints = charAttrs.healthPoints;
@@ -47,8 +59,25 @@ CharacterStats.prototype = Object.create(GameObject.prototype);
 CharacterStats.prototype.takeDamage = function() {
 	return `${this.name} took damage!`;
 }
+*/
+
 
 // === Humanoid === 
+
+class Humanoid extends CharacterStats {
+	constructor(humanAttrs){
+		super(humanAttrs);
+		this.team = humanAttrs.team;
+		this.weapons = humanAttrs.weapons;
+		this.language = humanAttrs.language;
+	}
+
+	greet() {
+		return `${this.name} offers a greeting in ${this.language}`
+	}
+}
+
+/*
 
 function Humanoid(humanAttrs) {
 	CharacterStats.call(this, humanAttrs);
@@ -62,6 +91,7 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
 Humanoid.prototype.greet = function() {
 	return `${this.name} offers a greeting in ${this.language}`
 }
+*/
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
