@@ -26,6 +26,12 @@ class Instructor extends Person {
 	grade(student, subject) {
 		console.log(`${student.name} recieves a perfect score on ${subject}`);
 	}
+
+	modifyGrade() {
+		const randomScore = Math.round(Math.random() * (100 - -100) + -100);
+		console.log(`${this.name} increases score by ${randomScore}`);
+		return randomScore;
+	}
 }
 
 class ProjectManager extends Instructor {
@@ -49,6 +55,7 @@ class Student extends Person {
 		super(attributes);
 		this.className = attributes.className;
 		this.favSubjects = attributes.favSubjects;
+		this.grade = attributes.grade;
 	}
 
 	listsSubjects() {
@@ -63,6 +70,14 @@ class Student extends Person {
 	sprintChallenge(subject) {
 		console.log(`${this.name} has begin sprint challenge on ${subject}`);
 	}
+
+	graduate() {
+		if (this.grade >= 70) {
+			console.log(`${this.name} graduated from lambda school. Grade is ${this.grade}.`);
+		} else {
+			console.log(`${this.name} needs more reps`)
+		}
+	}
 }
 
 // === Tests === 
@@ -72,7 +87,8 @@ const testStudent = {
 	className: 'WEB21',
 	favSubjects: ['machine learning', 'natural language processing', 'hiking', 'eating'],
 	age: 27,
-	location: 'Spokane'
+	location: 'Spokane',
+	grade: 20
 }
 
 const testInstructor = {
@@ -132,4 +148,24 @@ mason.PRAssignment('html design');
 mason.sprintChallenge('Basic JavaScript');
 mason.speak();
 // methods all green
+
+// === Stretch problem tests === 
+
+const testStudent2 = {
+	name: 'Chris',
+	className: 'WEB21',
+	favSubjects: ['machine learning', 'natural language processing', 'hiking', 'eating'],
+	age: 27,
+	location: 'Austin',
+	grade: 20
+}
+
+const chris = new Student(testStudent2);
+
+chris.graduate();
+
+
+chris.grade += pat.modifyGrade();
+console.log(chris.grade);
+chris.graduate();
 
