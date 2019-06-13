@@ -52,11 +52,12 @@ class Student extends Person {
 	}
 
 	listsSubjects() {
-		attributes.favSubjects.forEach(subject => console.log(subject));
+		console.log(`${this.name} favorite subjects are: `);
+		this.favSubjects.forEach(subject => console.log(subject));
 	}
 
 	PRAssignment(subject) {
-		console.log(`${this.student} has submitted a PR for ${subject}`);
+		console.log(`${this.name} has submitted a PR for ${subject}`);
 	}
 
 	sprintChallenge(subject) {
@@ -64,4 +65,71 @@ class Student extends Person {
 	}
 }
 
+// === Tests === 
+
+const testStudent = {
+	name: 'Mason Karsevar',
+	className: 'WEB21',
+	favSubjects: ['machine learning', 'natural language processing', 'hiking', 'eating'],
+	age: 27,
+	location: 'Spokane'
+}
+
+const testInstructor = {
+	name: 'Fred',
+	location: 'Bedrock',
+	age: 37,
+	favLanguage: 'JavaScript',
+	specialty: 'Front-end',
+	catchPhrase: `Don't forget the homies`
+}
+
+const testPM = {
+	gradClassName: 'WEB21',
+	favInstructor: 'Sean',
+	name: 'Pat Palmerston',
+	age: 32,
+	favLanguage: 'JavaScript',
+	specialty: 'front-end',
+	catchPhrase: 'most excellent',
+	location: 'San Francisco'
+}
+
+// === Instructor Class test === 
+
+const fred = new Instructor(testInstructor);
+
+console.log(fred); //The object looks fine. No undefineds.
+
+// method tests 
+fred.demo('machine learning');
+fred.grade(testStudent, 'machine learning');
+fred.speak();
+// methods all green
+
+// === ProjectManager Class test === 
+
+const pat = new ProjectManager(testPM);
+
+console.log(pat); // The object looks fine. No undefineds in the returned object
+
+// method tests
+pat.standUp('WEB21');
+pat.debugCode(testStudent, 'less preprocessing');
+pat.demo('html design');
+pat.grade(testStudent, 'advanced CSS');
+pat.speak();
+// methods all green
+
+
+// === Student Class test === 
+const mason = new Student(testStudent);
+console.log(mason); //The object looks just fine. No undefineds.
+
+// method tests
+mason.listsSubjects();
+mason.PRAssignment('html design');
+mason.sprintChallenge('Basic JavaScript');
+mason.speak();
+// methods all green
 
